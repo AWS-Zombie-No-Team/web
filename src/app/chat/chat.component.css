@@ -1,0 +1,11 @@
+.chat_header_img{
+    width: 50px;
+}
+.chat_header{
+    border-radius: 5px;
+    margin-left: 5px;
+    padding: 10px;
+    margin-top: 60px;
+    border: rgba(0, 0, 0, 0.1) solid 1px;
+    /*border-right: rgba(0, 0, 0, 0.1) solid 1px;*/
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, OnDestroy } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { User } from '../user/user';
 import { Router } from '@angular/router';
@@ -15,10 +15,13 @@ export class HomeComponent implements OnInit {
   users;
   mainUser = localStorage.getItem('currentUser');
 
+
+
   constructor(
     private userService: UserService,
     private router: Router
   ) { }
+
 
     getPeople() {
     this.userService.getUsers().then(res => {
@@ -30,18 +33,18 @@ export class HomeComponent implements OnInit {
         }
       }
 
-
-
-      console.log('users', this.users);
-
-      
+      console.log('users', this.users);     
     })
   }
 
     crushToken(){
     this.mainUser = JSON.parse(this.mainUser);
- 
-    
+  }
+
+    friendSelect(friend: any): void {
+    console.log("friend", friend);
+    this.data = friend;
+   
   }
 
     onLogout(){
@@ -56,9 +59,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.crushToken();
     this.getPeople();
-
     console.log('ololo', this.mainUser);
+
+
   }
+
+
 
 
 }

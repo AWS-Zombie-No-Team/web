@@ -10,15 +10,19 @@ import { HomeComponent } from './home/home.component';
 
 import { AuthService } from './service/auth.service';
 import { UserService } from './service/user.service';
+import { ChatService } from './service/chat.service';
+import { LocationService } from './service/location.service';
+
 import { AuthGuard } from './service/auth.guard';
 import { MapComponent } from './map/map.component';
 import { ProfileComponent } from './profile/profile.component';
-
+import { ChatComponent } from './chat/chat.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 const appRoutes: Routes = [
    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+   { path: 'profile', component: HomeComponent, canActivate: [AuthGuard] },
    { path: 'login', component: LoginComponent}
 
 
@@ -30,7 +34,8 @@ const appRoutes: Routes = [
     LoginComponent,
     HomeComponent,
     MapComponent,
-    ProfileComponent
+    ProfileComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   schemas:   [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [AuthService, UserService, AuthGuard],
+  providers: [AuthService, UserService, AuthGuard, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
