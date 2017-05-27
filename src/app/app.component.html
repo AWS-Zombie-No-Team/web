@@ -1,3 +1,21 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+    <nav class="navbar navbar-default" *ngIf="logged">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" routerLink="/home">KILL ALL ZOMBI</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a >article</a></li>
+                    <li><a >design</a></li>
+                    <li><a >category</a></li>
+                    <li><a >texture</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a (click)="onLogout()">logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <router-outlet></router-outlet>
+</div>
