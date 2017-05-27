@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { AuthService } from './service/auth.service';
 import { UserService } from './service/user.service';
 import { AuthGuard } from './service/auth.guard';
+import { MapComponent } from './map/map.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const appRoutes: Routes = [
    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -24,7 +26,9 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    MapComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
