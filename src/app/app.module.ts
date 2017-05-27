@@ -14,6 +14,8 @@ import { AuthGuard } from './service/auth.guard';
 import { MapComponent } from './map/map.component';
 import { ProfileComponent } from './profile/profile.component';
 
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+
 const appRoutes: Routes = [
    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -36,6 +38,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
+  schemas:   [CUSTOM_ELEMENTS_SCHEMA],
   providers: [AuthService, UserService, AuthGuard],
   bootstrap: [AppComponent]
 })

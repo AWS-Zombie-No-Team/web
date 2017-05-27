@@ -5,6 +5,8 @@ import {Observable, Subject} from "rxjs";
 @Injectable()
 export class AuthService {
 
+  mainUser = localStorage.getItem('currentUser');
+
   public onAuthChange$: Subject<User>;
   constructor() {
     this.onAuthChange$ = new Subject();
@@ -37,12 +39,14 @@ export class AuthService {
   setUid(numUid: string) {
     localStorage.setItem("numUid", numUid);
   }
+
   getToken(): string {
     return localStorage.getItem("token");
   }
     getUid(): string {
     return localStorage.getItem("numUid");
   }
+
   isLoggedIn(): any {
  	  return this.getToken() !== null;
   };

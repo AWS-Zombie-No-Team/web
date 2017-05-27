@@ -15,6 +15,7 @@ export class UserService {
   });
 
 //   serverUrl = environment.serviceUrl + environment.serviceAPIPath;
+    access_token = localStorage.getItem('token');
 
   constructor(
     private http: Http,
@@ -31,6 +32,15 @@ export class UserService {
         return Observable.throw(err);
       })
   }
+
+    getUsers(): any {
+        let url = 'https://mpnzwe6g7c.execute-api.eu-west-1.amazonaws.com/dev/friends-get-all';
+        return this.http.get(url, {headers: this.headers})
+            .toPromise().then(res => { return res.json(); })
+            .catch(err => {
+                return console.log(err);
+            });
+    }
 
 //   register(user:User): Observable<any>{
 //       let url = '';

@@ -3,20 +3,8 @@
   margin: 0;
   padding: 10px;
 }
-#main-section{
-   min-height:100%;
-   position:relative;
-}
-html{
-	height:100%;
-	padding:0;
-	margin:0;
-}
 
-#container{
-	height:100%;
-	padding-bottom:60px;
-}
+
    #custom-search-input .search-query {
    background: #fff none repeat scroll 0 0 !important;
    border-radius: 4px;
@@ -87,12 +75,12 @@ html{
   padding: 3px 20px;
 }
   .member_list{
-display:flex;
+  display:flex;
   flex-direction:column;
   justify:space-between;
   height:100%;
-  height:calc(100% - 60px);
-	  
+  height:calc(100% - 60px); 
+  overflow-x: scroll;  
   }
 
 
@@ -124,11 +112,7 @@ display:flex;
    .member_list li:last-child {
    border-bottom:none;
    }
-   .member_list {
-   
-   overflow-x: scroll;
-   overflow-y: auto;
-   }
+ 
    .sub_menu_ {
   background: #e8e6e7 none repeat scroll 0 0;
   left: 100%;
@@ -155,7 +139,7 @@ display:flex;
   border: medium none;
 }
 .new_message_head {
-  background: #6cf none repeat scroll 0 0;
+  background: #96858F;
   float: left;
   font-size: 13px;
   font-weight: 600;
@@ -171,7 +155,6 @@ display:flex;
 }
 .chat_area {
   position:relative;
-  background:grey;
   margin: 0;
   float: left;
   overflow-x: hidden;
@@ -183,6 +166,8 @@ display:flex;
   align-items:center;
   justify:space-between;
   height:calc(100% - 180px);
+  background-image: url("assets/walking_dead.jpg");
+  color:white;
 }
 .chat_area li {
   padding: 14px 14px 0;
@@ -206,11 +191,14 @@ display:flex;
   padding-bottom: 10px;
 }
 .message_write {
-  background: #ABFFFF none repeat scroll 0 0;
+  background: #96858F;
   float: left;
   padding: 15px;
   width: 100%;
   height: 130px;
+}
+.all_conversation{
+  background: #96858F;	
 }
 
 .message_write textarea.form-control {
@@ -234,8 +222,25 @@ display:flex;
   color: #fff;
   cursor:pointer;
 }
-.chat_container{
-  background:yellow;
+
+
+@media only screen and (max-width: 700px) {
+  .chat_area {
+  background:grey;
+  margin: 0;
+  opacity:.45;
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
