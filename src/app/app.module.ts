@@ -11,7 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthService } from './service/auth.service';
 import { UserService } from './service/user.service';
 import { ChatService } from './service/chat.service';
-import { LocationService } from './service/location.service';
+
 
 import { AuthGuard } from './service/auth.guard';
 import { MapComponent } from './map/map.component';
