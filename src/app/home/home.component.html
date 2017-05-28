@@ -61,9 +61,19 @@
                 <div class="col-sm-9 message_section">
                     <div class="row">
                         <div class="new_message_head">
-                            <div class="pull-left">{{mainUser.name}} {{mainUser.profession}} <span class="chat-img">
-                     <img src="{{mainUser.avatar}}" alt="User Avatar" class="img-circle">
-                     </span><button >get coordinat</button> </div>
+                            <div class="pull-right user-info">
+                              <div class="user-info-text">
+                                <div class="user-name">
+                                  {{mainUser.name}}
+                                </div>
+                                <div class="user-profession">
+                                  {{mainUser.profession}}
+                                </div>
+                              </div>
+                              <span class="chat-img">
+                                <img src="{{mainUser.avatar}}" alt="User Avatar" class="img-circle">
+                              </span>
+                            </div>
                             <div class="pull-right">
                                 <div class="dropdown">
                                     <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

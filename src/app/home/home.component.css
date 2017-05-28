@@ -172,6 +172,30 @@
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
   border: medium none;
 }
+.new_message_head .user-info {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 20px;
+}
+.new_message_head .user-info-text {
+  height: 53px;
+  margin-right: 20px;
+  margin-left: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.new_message_head .user-info-text div {
+  height: 13px;
+  line-height: 13px;
+  min-width: 30px;
+}
+
 .new_message_head {
   padding-left: 10px;
   background: #2196F3;
