@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
 
         this.authService.setToken(token);
         this.authService.setUid(uid);
-
+        location.reload();
         this.router.navigate(['/home']);
 
       }, err => {
