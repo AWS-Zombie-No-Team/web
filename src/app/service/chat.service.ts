@@ -3,6 +3,7 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
 import { AuthService } from './auth.service';
+import { LocationService } from './location.service';
 
 @Injectable()
 export class ChatService {
@@ -10,25 +11,27 @@ export class ChatService {
   private socket;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private locationService: LocationService
   ) {
     this.socket = io.connect(this.url, {query: `id=${this.authService.getUid()}&token=${this.authService.getToken()}`});
   }
 
 
   sendMessage(user, message) {
-    this.socket.emit('send-message', {
-      message,
-      to: user.id,
-      location: true,
-      date: new Date().getTime(),
+    this.locationService.getCoordinates().then(location => {
+      this.socket.emit('send-message', {
+        message,
+        to: user.id,
+        location: location,
+        date: new Date().getTime(),
+      });
     });
   }
 
   getMessages() {
     let observable = new Observable(observer => {
       this.socket.on('receive-message', (data) => {
-        console.log(data);
         observer.next(data);
       });
       return () => {

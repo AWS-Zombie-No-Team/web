@@ -8,7 +8,10 @@
       <div class="chat_prof">{{user.profession}}</div>
     </div>
     <div class="chat_location">
-      -50.10001, -45.0110
+      <span *ngIf="user.location && user.location.lat">
+        {{user.location.lat}}, {{user.location.lon}}
+      </span>
+
     </div>
 
   </div>

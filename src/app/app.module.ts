@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 import { AuthService } from './service/auth.service';
+import { LocationService } from './service/location.service';
 import { UserService } from './service/user.service';
 import { ChatService } from './service/chat.service';
 
@@ -45,7 +46,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   schemas:   [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [AuthService, UserService, AuthGuard, ChatService],
+  providers: [AuthService, UserService, AuthGuard, ChatService, LocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

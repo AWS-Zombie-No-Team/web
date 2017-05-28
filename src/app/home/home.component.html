@@ -49,7 +49,11 @@
                            09:45AM</strong>
                                         </div>
                                         <div class="contact_sec">
-                                            <strong class="primary-font">{{user.profession}}</strong> <span class="badge pull-right">3</span>
+                                          <strong class="primary-font">{{user.profession}}</strong>
+                                          <div *ngIf="user.location && user.location.lat">
+                                            {{user.location.lat}}, {{user.location.lon}}
+                                          </div>
+                                          <span class="badge pull-right">3</span>
                                         </div>
                                     </div>
                                 </li>
