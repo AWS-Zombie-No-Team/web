@@ -8,7 +8,7 @@ import { ChatService } from '../service/chat.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  
+
   @Input() user;
     messages = [];
   connection;
@@ -20,15 +20,16 @@ export class ChatComponent implements OnInit {
   ) {}
 
     sendMessage(){
-    this.chatService.sendMessage(this.message);
+    this.chatService.sendMessage(this.user, this.message);
     this.message = '';
   }
 
+
   ngOnInit() {
-        this.connection = this.chatService.getMessages().subscribe(message => {
+    this.connection = this.chatService.getMessages().subscribe(message => {
       this.messages.push(message);
     })
-    
+
   }
 
     ngOnDestroy() {
