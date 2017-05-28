@@ -14,14 +14,115 @@
   </div>
 
   <div *ngIf="user" class="chat-messages">
-    <div *ngFor="let message of messages">
+    <div class="message">
+      <div class="user-name">Mark</div>
+      <div class="message-text">
+        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
+        <div class="message-date">Thu</div>
+      </div>
+
+    </div>
+
+    <div class="message right">
+      <div class="user-name">Mark</div>
+      <div class="message-text">
+        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
+        <div class="message-date">Thu</div>
+      </div>
+    </div>
+
+    <div class="message right">
+      <div class="user-name">Mark</div>
+      <div class="message-text">
+        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
+        <div class="message-date">Thu</div>
+      </div>
+    </div>
+
+    <div class="message right">
+      <div class="user-name">Mark</div>
+      <div class="message-text">
+        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
+        <div class="message-date">Thu</div>
+      </div>
+    </div>
+
+    <div class="message">
+      <div class="user-name">Mark</div>
+      <div class="message-text">
+        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
+        <div class="message-date">Thu</div>
+      </div>
+    </div>
+
+    <div class="message">
+      <div class="user-name">Mark</div>
+      <div class="message-text">
+        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
+        <div class="message-date">Thu</div>
+      </div>
+    </div>
+
+    <div class="message">
+      <div class="user-name">Mark</div>
+      <div class="message-text">
+        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
+        <div class="message-date">Thu</div>
+      </div>
+    </div>
+
+    <div class="message">
+      <div class="user-name">Mark</div>
+      <div class="message-text">
+        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
+        <div class="message-date">Thu</div>
+      </div>
+    </div>
+
+    <div class="message">
+      <div class="user-name">Mark</div>
+      <div class="message-text">
+        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
+        <div class="message-date">Thu</div>
+      </div>
+    </div>
+
+    <div class="message">
+      <div class="user-name">Mark</div>
+      <div class="message-text">
+        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
+        <div class="message-date">Thu</div>
+      </div>
+    </div>
+
+
+    <div class="message right">
+      <div class="user-name">Mark</div>
+      <div class="message-text">
+        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
+        <div class="message-date">Thu</div>
+      </div>
+    </div>
+
+    <div class="message">
+      <div class="user-name">Mark</div>
+      <div class="message-text">
+        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
+        <div class="message-date">Thu</div>
+      </div>
+    </div>
+    <div *ngFor="let message of messages" class="messages-list">
+      <div class="message right"></div>
       {{message.text}}
     </div>
 
   </div>
   <div class="message_bottom">
-    <input [(ngModel)]="message"  />
-    <button (click)="sendMessage()">Send</button>
+    <input [(ngModel)]="message" class="message_input"
+    placeholder="Write a message..." />
+    <div (click)="sendMessage()" class="send_button">
+      <i class="glyphicon glyphicon-send"></i>
+    </div>
   </div>
 
 </div>
