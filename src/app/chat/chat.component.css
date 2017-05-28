@@ -74,8 +74,8 @@
   margin-right: 20px;
 }
 .message_bottom .send_button {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
