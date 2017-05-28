@@ -11,7 +11,7 @@ import { AuthService } from '../service/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  form:boolean = false;
+  form:boolean = true;
   user: User = new User();
 
   constructor(
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   onChange(){
     this.form == false ? this.form = true : this.form = false;
-   
+
     console.log(this.form);
   }
 
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         let user = this.user;
     this.userService.login(user.id, user.password)
       .subscribe(response => {
-    
+
         console.log(response);
         let user = response.data;
         this.authService.setUser(user);
