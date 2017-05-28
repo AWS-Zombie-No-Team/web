@@ -22,6 +22,10 @@ export class MessagesService {
     private authService: AuthService,
   ) { }
 
+  getChat(id) {
+    return this.chat_histories[id].sort((a, b) => parseInt(a.timestamp, 10) - parseInt(b.timestamp, 10));
+  }
+
   getChatHistories(users: any, timestamp = null, limit = 10) {
     const promises = users.map(user_id => {
       return this.http.post('https://49t6art088.execute-api.eu-west-1.amazonaws.com/dev/get-all-messages', {
@@ -31,7 +35,7 @@ export class MessagesService {
       }, {headers: this.headers}).toPromise()
         .then(res => { return res.json(); })
         .then(messagesRsp => {
-          this.chat_histories[user_id] = messagesRsp.data;
+          this.chat_histories[user_id] = messagesRsp.data.sort((a, b) => parseInt(a.timestamp, 10) - parseInt(b.timestamp, 10));
           return true;
         });
     });
@@ -41,17 +45,12 @@ export class MessagesService {
 
   updateHistory(user_id, message) {
     this.chat_histories[user_id].push(message);
-    this.chat_histories[user_id] = this.chat_histories[user_id].sort((a, b) => {
-      if (a.timestamp < b.timestamp) {
-        return -1;
-      }
-
-      if (a.timestamp > b.timestamp) {
-        return 1;
-      }
-
-      return 0;
-    });
+    this.chat_histories[user_id] = this.chat_histories[user_id].sort((a, b) => parseInt(a.timestamp, 10) - parseInt(b.timestamp, 10));
+    const objDiv = document.getElementById("chat-messages");
+    console.log(this.chat_histories);
+    if (objDiv) {
+      objDiv.scrollTop = objDiv.scrollHeight;
+    }
   }
 
   // login(id: string, password: string): Observable<any> {

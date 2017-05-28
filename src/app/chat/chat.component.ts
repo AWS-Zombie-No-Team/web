@@ -41,7 +41,7 @@ export class ChatComponent implements OnInit {
       receiver: this.user.id,
       location: {},
       msg: this.message,
-      date: new Date().getTime(),
+      timestamp: new Date().getTime(),
     };
 
     if (this.message === '') {
@@ -51,8 +51,11 @@ export class ChatComponent implements OnInit {
     this.messagesService.updateHistory(this.user.id, m);
     this.chatService.sendMessage(this.user, this.message);
 
-    const objDiv = document.getElementById("chat-messages");
-    objDiv.scrollTop = objDiv.scrollHeight;
+    setTimeout(() => {
+      const objDiv = document.getElementById("chat-messages");
+      objDiv.scrollTop = objDiv.scrollHeight;
+    },10);
+
 
     this.message = '';
   }

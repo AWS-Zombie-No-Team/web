@@ -69,18 +69,13 @@ export class HomeComponent implements OnInit {
     friendSelect(friend: any): void {
     console.log("friend", friend);
     this.data = friend;
-    this.msgs = this.messagesService.chat_histories[friend.id].sort((a, b) => {
-      if (a.timestamp < b.timestamp) {
-        return -1;
-      }
-
-      if (a.timestamp > b.timestamp) {
-        return 1;
-      }
-
-      return 0;
-    });
+    this.msgs = this.messagesService.chat_histories[friend.id]
+      .sort((a, b) => parseInt(a.timestamp, 10) - parseInt(b.timestamp));
     this.showMenu = false;
+    setTimeout(() => {
+      const objDiv = document.getElementById("chat-messages");
+      objDiv.scrollTop = objDiv.scrollHeight;
+    },10);
 
   }
 
@@ -109,28 +104,6 @@ export class HomeComponent implements OnInit {
       this.messagesService.updateHistory(message.sender, message);
       this.showNotify(message.sender, message.msg);
 
-      const objDiv = document.getElementById("chat-messages");
-      if (objDiv) {
-        objDiv.scrollTop = objDiv.scrollHeight;
-      }
-      // this.messages.push(message);
-      // this.messages = this.messages.sort((a, b) => {
-      //   if (a.timestamp < b.timestamp) {
-      //     return -1;
-      //   }
-      //
-      //   if (a.timestamp > b.timestamp) {
-      //     return 1;
-      //   }
-      //
-      //   return 0;
-      // })
     });
-
-
   }
-
-
-
-
 }
