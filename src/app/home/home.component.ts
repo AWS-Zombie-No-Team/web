@@ -3,6 +3,9 @@ import { UserService } from '../service/user.service';
 import { User } from '../user/user';
 import { Router } from '@angular/router';
 import { ChatService } from '../service/chat.service';
+import { MessagesService} from '../service/messages.service';
+import { LocationService} from '../service/location.service';
+
 
 @Component({
   selector: 'app-home',
@@ -14,13 +17,17 @@ export class HomeComponent implements OnInit {
 
   data;
   users;
+  msgs;
   mainUser = localStorage.getItem('currentUser');
   showMenu = true;
+  notification = null;
 
 
   constructor(
     private userService: UserService,
     private chatService: ChatService,
+    private messagesService: MessagesService,
+    private locationService: LocationService,
     private router: Router
   ) { }
 
@@ -28,6 +35,18 @@ export class HomeComponent implements OnInit {
 
     toggleMenu() {
       this.showMenu = !this.showMenu;
+    }
+
+    showNotify(name, message) {
+      this.notification = {
+        user: this.users.find(u => u.id === name),
+        name,
+        message,
+      };
+
+      setTimeout(() => {
+        this.notification = null;
+      }, 7000);
     }
 
     getPeople() {
@@ -39,7 +58,6 @@ export class HomeComponent implements OnInit {
           this.users[i].avatar = 'https://vignette2.wikia.nocookie.net/angrybirds/images/3/36/%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9_%D0%B7%D0%BE%D0%BC%D0%B1%D0%B8_%D0%B8%D0%B7_%D1%82%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%B0.png/revision/latest?cb=20131023095813&path-prefix=ru';
         }
       }
-
       console.log('users', this.users);
     })
   }
@@ -51,11 +69,22 @@ export class HomeComponent implements OnInit {
     friendSelect(friend: any): void {
     console.log("friend", friend);
     this.data = friend;
+    this.msgs = this.messagesService.chat_histories[friend.id].sort((a, b) => {
+      if (a.timestamp < b.timestamp) {
+        return -1;
+      }
+
+      if (a.timestamp > b.timestamp) {
+        return 1;
+      }
+
+      return 0;
+    });
     this.showMenu = false;
 
   }
 
-    onLogout(){
+  onLogout(){
     localStorage.removeItem("currentUser");
     localStorage.removeItem("token");
     localStorage.removeItem("numUid");
@@ -67,12 +96,36 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.crushToken();
     this.getPeople();
+    this.locationService.getCoordinates();
     console.log('ololo', this.mainUser);
 
     this.chatService.getMessages().subscribe(message => {
       console.log('getMessages', message);
       // this.messages.push(message);
     })
+
+    this.chatService.getMessages().subscribe((message: any) => {
+      console.log('getMessages', message);
+      this.messagesService.updateHistory(message.sender, message);
+      this.showNotify(message.sender, message.msg);
+
+      const objDiv = document.getElementById("chat-messages");
+      if (objDiv) {
+        objDiv.scrollTop = objDiv.scrollHeight;
+      }
+      // this.messages.push(message);
+      // this.messages = this.messages.sort((a, b) => {
+      //   if (a.timestamp < b.timestamp) {
+      //     return -1;
+      //   }
+      //
+      //   if (a.timestamp > b.timestamp) {
+      //     return 1;
+      //   }
+      //
+      //   return 0;
+      // })
+    });
 
 
   }

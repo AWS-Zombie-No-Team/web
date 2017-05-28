@@ -53,7 +53,7 @@
                                           <div *ngIf="user.location && user.location.lat">
                                             {{user.location.lat}}, {{user.location.lon}}
                                           </div>
-                                          <span class="badge pull-right">3</span>
+                                          <!--<span class="badge pull-right">3</span>-->
                                         </div>
                                     </div>
                                 </li>
@@ -95,7 +95,7 @@
                                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
                                         <li><a href="#">Action</a></li>
                                         <!--<li><a routerLink="/profile">Profile</a></li>-->
-                                        <li><a (click)="onLogout()">Logout</a></li>
+                                        <li><a  (click)="onLogout()">Logout</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                         <!--<div class="chat_area">
 
                         </div>-->
-                        <app-chat [user]="data"></app-chat>
+                        <app-chat [user]="data" [messages]="msgs" [currentUser]="mainUser"></app-chat>
                     </div>
                 </div>
                 <!--message_section-->
@@ -122,6 +122,13 @@
     </div>
 
 
-
-
+    <div *ngIf="notification" class="notification">
+      <div class="msg">
+        <div class="notification-name">{{notification.name}}</div>
+        <div class="notification-text">{{notification.message}}</div>
+      </div>
+      <div class="notification-go" (click)="friendSelect(notification.user)">
+        Open
+      </div>
+    </div>
 </div>

@@ -16,113 +16,23 @@
 
   </div>
 
-  <div *ngIf="user" class="chat-messages">
-    <div class="message">
-      <div class="user-name">Mark</div>
-      <div class="message-text">
-        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
-        <div class="message-date">Thu</div>
-      </div>
+  <div *ngIf="user" class="chat-messages" id="chat-messages">
 
-    </div>
-
-    <div class="message right">
-      <div class="user-name">Mark</div>
-      <div class="message-text">
-        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
-        <div class="message-date">Thu</div>
-      </div>
-    </div>
-
-    <div class="message right">
-      <div class="user-name">Mark</div>
-      <div class="message-text">
-        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
-        <div class="message-date">Thu</div>
-      </div>
-    </div>
-
-    <div class="message right">
-      <div class="user-name">Mark</div>
-      <div class="message-text">
-        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
-        <div class="message-date">Thu</div>
-      </div>
-    </div>
-
-    <div class="message">
-      <div class="user-name">Mark</div>
-      <div class="message-text">
-        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
-        <div class="message-date">Thu</div>
-      </div>
-    </div>
-
-    <div class="message">
-      <div class="user-name">Mark</div>
-      <div class="message-text">
-        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
-        <div class="message-date">Thu</div>
-      </div>
-    </div>
-
-    <div class="message">
-      <div class="user-name">Mark</div>
-      <div class="message-text">
-        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
-        <div class="message-date">Thu</div>
-      </div>
-    </div>
-
-    <div class="message">
-      <div class="user-name">Mark</div>
-      <div class="message-text">
-        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
-        <div class="message-date">Thu</div>
-      </div>
-    </div>
-
-    <div class="message">
-      <div class="user-name">Mark</div>
-      <div class="message-text">
-        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
-        <div class="message-date">Thu</div>
-      </div>
-    </div>
-
-    <div class="message">
-      <div class="user-name">Mark</div>
-      <div class="message-text">
-        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
-        <div class="message-date">Thu</div>
-      </div>
-    </div>
-
-
-    <div class="message right">
-      <div class="user-name">Mark</div>
-      <div class="message-text">
-        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
-        <div class="message-date">Thu</div>
-      </div>
-    </div>
-
-    <div class="message">
-      <div class="user-name">Mark</div>
-      <div class="message-text">
-        <div class="text">Hello this is very long long message with long long long long long text that is very very long</div>
-        <div class="message-date">Thu</div>
-      </div>
-    </div>
     <div *ngFor="let message of messages" class="messages-list">
-      <div class="message right"></div>
-      {{message.text}}
+      <div class="message" [ngClass]="{'message': true, 'right': message.sender === currentUser.id}">
+        <div class="user-name">{{message.sender}}</div>
+        <div class="message-text">
+          <div class="text">{{message.msg}}</div>
+          <div class="message-date">Sun</div>
+        </div>
+      </div>
+
     </div>
 
   </div>
   <div class="message_bottom">
     <input [(ngModel)]="message" class="message_input"
-    placeholder="Write a message..." />
+    placeholder="Write a message..." (keyup.enter)="sendMessage()"/>
     <div (click)="sendMessage()" class="send_button">
       <i class="glyphicon glyphicon-send"></i>
     </div>

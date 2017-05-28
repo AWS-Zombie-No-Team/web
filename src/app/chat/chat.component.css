@@ -110,13 +110,24 @@
   font-weight: 700;
 }
 
+.message-text {
+  width: 100%;
+}
+.message {
+  margin-bottom: 10px;
+}
 .chat-messages .message-text {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: baseline;
 }
 .chat-messages .message-text .text {
-  width: calc(100% - 80px);
+  margin-right: 20px;
+}
+
+.chat-messages .message.right .message-text .text {
+  margin-right: 0px;
+  margin-left: 20px;
 }
 
 .chat-messages .message-date {

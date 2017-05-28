@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ChatService } from '../service/chat.service';
+import { MessagesService } from '../service/messages.service';
+import { LocationService } from '../service/location.service';
 
 
 @Component({
@@ -10,32 +12,58 @@ import { ChatService } from '../service/chat.service';
 export class ChatComponent implements OnInit {
 
   @Input() user;
-  
-  messages = [];
+  @Input() messages;
+  @Input() currentUser;
+
   connection;
   message;
 
 
   constructor(
-    private chatService:ChatService
-  ) {}
+    private chatService:ChatService,
+    private messagesService: MessagesService,
+    private locationService: LocationService,
+  ) {
+
+  }
 
 
-    sendMessage(){
+  keyDownFunction(event) {
+    if(event.keyCode == 13) {
+      alert('you just clicked enter');
+      // rest of your code
+    }
+  }
+
+  sendMessage(){
+    const m = {
+      sender: this.currentUser.id,
+      receiver: this.user.id,
+      location: {},
+      msg: this.message,
+      date: new Date().getTime(),
+    };
+
+    if (this.message === '') {
+      return;
+    }
+
+    this.messagesService.updateHistory(this.user.id, m);
     this.chatService.sendMessage(this.user, this.message);
+
+    const objDiv = document.getElementById("chat-messages");
+    objDiv.scrollTop = objDiv.scrollHeight;
+
     this.message = '';
   }
 
 
   ngOnInit() {
-    this.connection = this.chatService.getMessages().subscribe(message => {
-      console.log('getMessages', message);
-      this.messages.push(message);
-    })
+
 
   }
 
-    ngOnDestroy() {
+  ngOnDestroy() {
     this.connection.unsubscribe();
   }
 
