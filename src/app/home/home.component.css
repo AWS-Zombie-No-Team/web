@@ -8,11 +8,11 @@
   box-shadow: 2px 0px 8px rgba(0,0,0,0.3);
 }
 .chat_sidebar {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .member_list {
   height: calc(100% - 53px);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 #custom-search-input {
   margin: 0;

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, OnDestroy } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { User } from '../user/user';
 import { Router } from '@angular/router';
+import { ChatService } from '../service/chat.service';
 
 @Component({
   selector: 'app-home',
@@ -19,8 +20,11 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private chatService: ChatService,
     private router: Router
   ) { }
+
+
 
 
     getPeople() {
@@ -60,6 +64,11 @@ export class HomeComponent implements OnInit {
     this.crushToken();
     this.getPeople();
     console.log('ololo', this.mainUser);
+
+    this.chatService.getMessages().subscribe(message => {
+      console.log('getMessages', message);
+      // this.messages.push(message);
+    })
 
 
   }

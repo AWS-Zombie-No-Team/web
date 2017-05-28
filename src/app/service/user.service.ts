@@ -11,7 +11,7 @@ export class UserService {
 
    headers = new Headers({
     "Content-Type": "application/json",
-    'AuthToken': this.authService.getToken()
+    'AuthToken': this.authService.getToken(),
   });
 
 //   serverUrl = environment.serviceUrl + environment.serviceAPIPath;
@@ -19,12 +19,12 @@ export class UserService {
 
   constructor(
     private http: Http,
-    private authService: AuthService
+    private authService: AuthService,
     ) { }
 
   login(id: string, password: string): Observable<any> {
 
-    let url = 'https://mpnzwe6g7c.execute-api.eu-west-1.amazonaws.com/dev/login';
+    let url = 'https://49t6art088.execute-api.eu-west-1.amazonaws.com/dev/login';
 
     return this.http.post(url, { id: id, password: password })
       .map(res => res.json())
@@ -34,7 +34,7 @@ export class UserService {
   }
 
     getUsers(): any {
-        let url = 'https://mpnzwe6g7c.execute-api.eu-west-1.amazonaws.com/dev/friends-get-all';
+        let url = 'https://49t6art088.execute-api.eu-west-1.amazonaws.com/dev/friendsgetall';
         return this.http.get(url, {headers: this.headers})
             .toPromise().then(res => { return res.json(); })
             .catch(err => {

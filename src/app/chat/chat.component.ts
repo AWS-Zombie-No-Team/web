@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ChatService } from '../service/chat.service';
 
 
@@ -10,7 +10,8 @@ import { ChatService } from '../service/chat.service';
 export class ChatComponent implements OnInit {
 
   @Input() user;
-    messages = [];
+  
+  messages = [];
   connection;
   message;
 
@@ -18,6 +19,7 @@ export class ChatComponent implements OnInit {
   constructor(
     private chatService:ChatService
   ) {}
+
 
     sendMessage(){
     this.chatService.sendMessage(this.user, this.message);
@@ -27,6 +29,7 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
     this.connection = this.chatService.getMessages().subscribe(message => {
+      console.log('getMessages', message);
       this.messages.push(message);
     })
 
