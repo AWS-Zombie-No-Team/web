@@ -1,13 +1,27 @@
-<div *ngIf="user" class="chat_header">
-  <span>
-  {{user.id}}
-     <img src="{{user.avatar}}" alt="User Avatar" class="chat_header_img">
-  </span>
-</div>
+<div *ngIf="user" class="chat">
+  <div class="chat_header">
+    <div class="chat_img">
+      <img src="{{user.avatar}}" alt="User Avatar" class="chat_header_img">
+    </div>
+    <div class="chat_info">
+      <div class="chat_id">{{user.id}}</div>
+      <div class="chat_prof">{{user.profession}}</div>
+    </div>
+    <div class="chat_location">
+      -50.10001, -45.0110
+    </div>
 
-<div *ngIf="user">
-<div *ngFor="let message of messages">
-                     {{message.text}}
-                   </div>
-                   <input [(ngModel)]="message"  /><button (click)="sendMessage()">Send</button>
+  </div>
+
+  <div *ngIf="user" class="chat-messages">
+    <div *ngFor="let message of messages">
+      {{message.text}}
+    </div>
+
+  </div>
+  <div class="message_bottom">
+    <input [(ngModel)]="message"  />
+    <button (click)="sendMessage()">Send</button>
+  </div>
+
 </div>

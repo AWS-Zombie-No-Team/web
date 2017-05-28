@@ -2,7 +2,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="chat_container column-sm-12">
-                <div class="col-sm-3 chat_sidebar">
+
+
+                <div [ngClass]="{'col-sm-3': true, 'chat_sidebar': true, 'col-xs-12': true, 'menu-show': showMenu}">
                     <div class="row">
                         <div id="searchWrapper">
                             <div id="custom-search-input">
@@ -58,9 +60,15 @@
                 <!--chat_sidebar-->
 
 
-                <div class="col-sm-9 message_section">
+
+                <div [ngClass]="{'col-sm-9': true, 'message_section': true, 'col-xs-12': true, 'menu-show': showMenu}">
                     <div class="row">
                         <div class="new_message_head">
+                            <div class="pull visible-xs">
+                              <button class="btn btn-danger add-button" type="button" (click)="toggleMenu()">
+                                <span class="glyphicon glyphicon-th-list"></span>
+                              </button>
+                            </div>
                             <div class="pull-right user-info">
                               <div class="user-info-text">
                                 <div class="user-name">

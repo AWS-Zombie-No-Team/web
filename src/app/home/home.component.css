@@ -190,6 +190,27 @@
   align-items: center;
 }
 
+@media screen and (max-width: 768px) {
+  .new_message_head {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px;
+  }
+  .chat_sidebar {
+    display: none;
+  }
+  .chat_sidebar.menu-show {
+    display: block;
+  }
+  .message_section.menu-show {
+    display: none;
+  }
+}
+
+.message_section .row {
+  box-shadow: none;
+}
+
 .new_message_head .user-info-text div {
   height: 13px;
   line-height: 13px;
@@ -198,6 +219,7 @@
 
 .new_message_head {
   padding-left: 10px;
+  box-shadow: 0px 3px 8px rgba(0,0,0,0.4);
   background: #2196F3;
   color: #fff;
   float: left;

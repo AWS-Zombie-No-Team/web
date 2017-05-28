@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   data;
   users;
   mainUser = localStorage.getItem('currentUser');
-
+  showMenu = true;
 
 
   constructor(
@@ -26,18 +26,21 @@ export class HomeComponent implements OnInit {
 
 
 
+    toggleMenu() {
+      this.showMenu = !this.showMenu;
+    }
 
     getPeople() {
     this.userService.getUsers().then(res => {
       this.users = res.data;
-      
+
       for(var i = 0; i <= this.users.length - 1; i++){
         if(this.users[i].avatar == 'none'){
           this.users[i].avatar = 'https://vignette2.wikia.nocookie.net/angrybirds/images/3/36/%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9_%D0%B7%D0%BE%D0%BC%D0%B1%D0%B8_%D0%B8%D0%B7_%D1%82%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%B0.png/revision/latest?cb=20131023095813&path-prefix=ru';
         }
       }
 
-      console.log('users', this.users);     
+      console.log('users', this.users);
     })
   }
 
@@ -48,7 +51,8 @@ export class HomeComponent implements OnInit {
     friendSelect(friend: any): void {
     console.log("friend", friend);
     this.data = friend;
-   
+    this.showMenu = false;
+
   }
 
     onLogout(){
